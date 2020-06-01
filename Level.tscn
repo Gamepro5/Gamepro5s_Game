@@ -103,15 +103,14 @@ mesh = SubResource( 6 )
 material/0 = null
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 0.685501, -0.728072, -1.18618e-07, 0, -1.62921e-07, 1, -0.728072, -0.685501, -1.11682e-07, -2.8, 2.15553, 2.08908 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.12015, 3.86386 )
 script = ExtResource( 2 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.582703, 0.372208, -0.722439, -0.0190069, 0.894952, 0.445758, 0.812463, -0.246013, 0.528565, -9.8056, 5.638, 6.9593 )
+transform = Transform( 0.582703, 0.372208, -0.722439, -0.0190069, 0.894952, 0.445758, 0.812463, -0.246013, 0.528566, -9.8056, 5.638, 6.9593 )
 
-[node name="Camera2" type="Camera" parent="."]
+[node name="Bird\'s Eye View" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 12.1467, 0 )
-current = true
 
 [node name="RigidBody" type="RigidBody" parent="."]
 transform = Transform( 0.288762, -0.0396695, 0.956579, 0.41029, -0.897617, -0.161079, 0.865031, 0.438988, -0.242922, 0.492693, 2.36799, -1.31697 )
