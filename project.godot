@@ -16,6 +16,8 @@ _global_script_class_icons={
 [application]
 
 config/name="Gamepro5's Game"
+boot_splash/image="res://Loading Screen.png"
+boot_splash/bg_color=Color( 0.6, 0.6, 0.6, 1 )
 config/icon="res://icon.png"
 
 [rendering]

@@ -9,16 +9,16 @@
 
 [sub_resource type="Skin" id=3]
 
-[sub_resource type="PhysicsMaterial" id=8]
+[sub_resource type="PhysicsMaterial" id=4]
 bounce = 1.0
 
-[sub_resource type="BoxShape" id=4]
+[sub_resource type="BoxShape" id=5]
 
-[sub_resource type="CubeMesh" id=5]
+[sub_resource type="CubeMesh" id=6]
 
-[sub_resource type="BoxShape" id=6]
+[sub_resource type="BoxShape" id=7]
 
-[sub_resource type="CubeMesh" id=7]
+[sub_resource type="CubeMesh" id=8]
 
 [node name="Level" type="Spatial"]
 
@@ -46,7 +46,7 @@ material/0 = null
 
 [node name="Box3" type="RigidBody" parent="."]
 transform = Transform( 0.73723, -0.392144, 0.550195, 0.314273, 0.919904, 0.234542, -0.598101, 0, 0.801421, 0.755633, 4.50575, -0.439316 )
-physics_material_override = SubResource( 8 )
+physics_material_override = SubResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Box3"]
 shape = SubResource( 1 )
@@ -83,21 +83,21 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.9, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
 transform = Transform( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
 transform = Transform( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
-mesh = SubResource( 5 )
+mesh = SubResource( 6 )
 material/0 = null
 
 [node name="StaticBody2" type="StaticBody" parent="."]
 transform = Transform( 5, 0, 0, 0, 0.707107, -3.53553, 0, 0.707107, 3.53553, 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody2"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody2"]
-mesh = SubResource( 5 )
+mesh = SubResource( 6 )
 material/0 = null
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
@@ -113,8 +113,8 @@ transform = Transform( 0.288762, -0.0396695, 0.956579, 0.41029, -0.897617, -0.16
 gravity_scale = -1.0
 
 [node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="MeshInstance" type="MeshInstance" parent="RigidBody"]
-mesh = SubResource( 7 )
+mesh = SubResource( 8 )
 material/0 = null
