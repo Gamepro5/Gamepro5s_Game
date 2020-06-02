@@ -18,11 +18,11 @@ func _input(event):
 		if cursorFocus:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			rotate(Vector3.UP, deg2rad(-event.relative.x * sensitivity));
-			eyes.rotate(Vector3.LEFT, deg2rad(event.relative.y * sensitivity));
-			if get_rotation().x > deg2rad(90): #workn't
-				eyes.rotate(Vector3.LEFT, deg2rad(90))
-			elif get_rotation().x < deg2rad(-90):
-				eyes.rotate(Vector3.LEFT, deg2rad(-90))
+			eyes.rotate(Vector3.RIGHT, deg2rad(-event.relative.y * sensitivity));
+			if eyes.get_rotation().x > PI/2:
+				eyes.set_rotation(Vector3(PI/2, 0, 0))
+			elif eyes.get_rotation().x < -PI/2:
+				eyes.set_rotation(Vector3(-PI/2, 0, 0))
 		
 func _physics_process(delta):
 	
