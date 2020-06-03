@@ -1,26 +1,33 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
 
 [sub_resource type="SphereShape" id=1]
 
-[sub_resource type="SphereMesh" id=9]
+[sub_resource type="SphereMesh" id=2]
 
 [sub_resource type="Skin" id=3]
 
-[sub_resource type="SphereMesh" id=2]
+[sub_resource type="SphereMesh" id=4]
 
-[sub_resource type="PhysicsMaterial" id=4]
+[sub_resource type="PhysicsMaterial" id=5]
 bounce = 1.0
 
-[sub_resource type="BoxShape" id=5]
+[sub_resource type="BoxShape" id=6]
 
-[sub_resource type="CubeMesh" id=6]
+[sub_resource type="SpatialMaterial" id=10]
+vertex_color_use_as_albedo = true
+albedo_color = Color( 0.34902, 0.85098, 0.121569, 1 )
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 1.0
 
-[sub_resource type="BoxShape" id=7]
+[sub_resource type="CubeMesh" id=7]
+material = SubResource( 10 )
 
-[sub_resource type="CubeMesh" id=8]
+[sub_resource type="BoxShape" id=8]
+
+[sub_resource type="CubeMesh" id=9]
 
 [node name="Level" type="Spatial"]
 
@@ -33,7 +40,7 @@ shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Box"]
 transform = Transform( 1, -4.04633e-08, 0, -4.76271e-08, 1, -5.91812e-09, 0, -1.55172e-08, 1, 0, 0, 0 )
-mesh = SubResource( 9 )
+mesh = SubResource( 2 )
 skin = SubResource( 3 )
 material/0 = null
 
@@ -44,19 +51,19 @@ transform = Transform( 0.73723, -0.392144, 0.550195, 0.314273, 0.919904, 0.23454
 shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Box2"]
-mesh = SubResource( 2 )
+mesh = SubResource( 4 )
 skin = SubResource( 3 )
 material/0 = null
 
 [node name="Box3" type="RigidBody" parent="."]
 transform = Transform( 0.73723, -0.392144, 0.550195, 0.314273, 0.919904, 0.234542, -0.598101, 0, 0.801421, 0.755633, 4.50575, -0.439316 )
-physics_material_override = SubResource( 4 )
+physics_material_override = SubResource( 5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Box3"]
 shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Box3"]
-mesh = SubResource( 2 )
+mesh = SubResource( 4 )
 skin = SubResource( 3 )
 material/0 = null
 
@@ -67,7 +74,7 @@ transform = Transform( 0.73723, -0.392144, 0.550195, 0.314273, 0.919904, 0.23454
 shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Box4"]
-mesh = SubResource( 2 )
+mesh = SubResource( 4 )
 skin = SubResource( 3 )
 material/0 = null
 
@@ -78,7 +85,7 @@ transform = Transform( 0.73723, -0.392144, 0.550195, 0.314273, 0.919904, 0.23454
 shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Box5"]
-mesh = SubResource( 2 )
+mesh = SubResource( 4 )
 skin = SubResource( 3 )
 material/0 = null
 
@@ -87,25 +94,25 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.9, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
 transform = Transform( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
 transform = Transform( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
-mesh = SubResource( 6 )
+mesh = SubResource( 7 )
 material/0 = null
 
 [node name="StaticBody2" type="StaticBody" parent="."]
 transform = Transform( 5, 0, 0, 0, 0.707107, -3.53553, 0, 0.707107, 3.53553, 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody2"]
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody2"]
-mesh = SubResource( 6 )
+mesh = SubResource( 7 )
 material/0 = null
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.12015, 3.86386 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.7166, 3.86386 )
 script = ExtResource( 2 )
 
 [node name="Camera" type="Camera" parent="."]
@@ -119,8 +126,15 @@ transform = Transform( 0.288762, -0.0396695, 0.956579, 0.41029, -0.897617, -0.16
 gravity_scale = -1.0
 
 [node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
-shape = SubResource( 7 )
+shape = SubResource( 8 )
 
 [node name="MeshInstance" type="MeshInstance" parent="RigidBody"]
-mesh = SubResource( 8 )
+mesh = SubResource( 9 )
 material/0 = null
+
+[node name="OmniLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.16466, 5.7541 )
+light_energy = 0.88
+light_indirect_energy = 0.94
+light_specular = 0.3
+omni_range = 4096.0
