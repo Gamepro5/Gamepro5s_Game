@@ -31,3 +31,10 @@ shape = SubResource( 3 )
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 current = true
+
+[node name="SpotLight" type="SpotLight" parent="Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.10525, 0, 0 )
+light_energy = 2.0
+light_specular = 0.17
+spot_range = 4096.0
+spot_angle = 20.8
