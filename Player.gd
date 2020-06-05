@@ -2,18 +2,24 @@ extends KinematicBody
 
 var velocity = Vector3(0,0,0);
 var upDef = Vector3(0, 1, 0)
-const accelerationConstant = 0.8;
-var maxSpeed = 50; 
+const accelerationConstant = 0.5;
+var maxSpeed = 5;
 var acceleration = 0;
 var midAir = false;
-var cursorFocus = true;
+var cursorFocus = false;
 onready var eyes = get_node("Camera");
 var sensitivity = 0.3;
 var gravity = 25;
 var jumpStrength = 10;
+var flashlightOn = true;
+var unshaded_material;
+var shaded_material;
 
 func _ready():
-	
+	unshaded_material = eyes.get_node("Forearm").get_node("Pill").mesh.surface_get_material(0).duplicate()
+	unshaded_material.flags_unshaded = true;
+	shaded_material = eyes.get_node("Forearm").get_node("Pill").mesh.surface_get_material(0).duplicate()
+	shaded_material.flags_unshaded = false;
 	pass
 
 func _input(event):
@@ -85,20 +91,35 @@ func _physics_process(delta):
 			velocity.y = jumpStrength;
 	move_and_slide(velocity, upDef) #allways be moving
 	
+	if Input.is_action_just_pressed("toggle_flashlight"):
+		flashlightOn = !flashlightOn
+		if flashlightOn:
+			eyes.get_node("Forearm").get_node("Pill").mesh.surface_set_material(0, unshaded_material)
+			eyes.get_child(0).light_energy = 2;
+		else:
+			eyes.get_node("Forearm").get_node("Pill").mesh.surface_set_material(0, shaded_material)
+			eyes.get_child(0).light_energy = 0;
+		#eyes.get_node("Forearm").get_node("Pill").mesh.surface_get_material(0).flags_unshaded = !(eyes.get_node("Forearm").get_node("Pill").mesh.surface_get_material(0).flags_unshaded); # this causes a collosal lag spike and I have no idea why.
+		#eyes.get_child(0).light_energy = 0;
+	if Input.is_action_pressed("lock_cursor"):
+		#get_viewport().warp_mouse(Vector2(get_viewport().size.x/2,get_viewport().size.y/2))
+		#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		cursorFocus = true;
 	if Input.is_action_pressed("unlock_cursor"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		cursorFocus = false;
 	
-	print("tick = ", delta)
-	
+	#print("tick = ", delta)
+	print(velocity)
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_FOCUS_IN:
-		get_viewport().warp_mouse(Vector2(get_viewport().size.x/2,get_viewport().size.y/2))
-		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		cursorFocus = true;
+		#get_viewport().warp_mouse(Vector2(get_viewport().size.x/2,get_viewport().size.y/2))
+		#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		#cursorFocus = true;
 		print("focus in")
 	elif what == MainLoop.NOTIFICATION_WM_FOCUS_OUT:
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		print("focus out")
 		

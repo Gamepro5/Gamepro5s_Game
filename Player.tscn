@@ -1,14 +1,41 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=10 format=2]
+
+[sub_resource type="SpatialMaterial" id=7]
+albedo_color = Color( 1, 0, 0, 1 )
 
 [sub_resource type="CapsuleMesh" id=1]
+material = SubResource( 7 )
 radius = 0.5
 
+[sub_resource type="SpatialMaterial" id=8]
+albedo_color = Color( 1, 0, 0, 1 )
+
 [sub_resource type="CylinderMesh" id=2]
+material = SubResource( 8 )
 top_radius = 0.05
 bottom_radius = 0.05
+height = 1.105
 
 [sub_resource type="CapsuleShape" id=3]
 radius = 0.5
+
+[sub_resource type="SpatialMaterial" id=9]
+albedo_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="CylinderMesh" id=4]
+material = SubResource( 9 )
+top_radius = 0.05
+bottom_radius = 0.05
+height = 1.0
+
+[sub_resource type="SpatialMaterial" id=5]
+flags_unshaded = true
+albedo_color = Color( 0.988235, 1, 0.819608, 1 )
+
+[sub_resource type="CapsuleMesh" id=6]
+material = SubResource( 5 )
+radius = 0.06
+mid_height = 0.05
 
 [node name="KinematicBody" type="KinematicBody"]
 
@@ -19,8 +46,8 @@ transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, 0
 mesh = SubResource( 1 )
 material/0 = null
 
-[node name="MeshInstance2" type="MeshInstance" parent="Model"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1 )
+[node name="Arm" type="MeshInstance" parent="Model"]
+transform = Transform( -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0, 1, 0.552, 0, 1 )
 mesh = SubResource( 2 )
 material/0 = null
 
@@ -33,8 +60,19 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 current = true
 
 [node name="SpotLight" type="SpotLight" parent="Camera"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.10525, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.10525, 0, -1.19449 )
 light_energy = 2.0
 light_specular = 0.17
+shadow_enabled = true
+shadow_reverse_cull_face = true
 spot_range = 4096.0
-spot_angle = 20.8
+
+[node name="Forearm" type="MeshInstance" parent="Camera"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 1.105, 0, -0.5 )
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="Pill" type="MeshInstance" parent="Camera/Forearm"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0.000249982, 0.506033, -2.38419e-07 )
+mesh = SubResource( 6 )
+material/0 = null
