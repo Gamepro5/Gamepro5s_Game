@@ -1,22 +1,17 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://LightPill.gd" type="Script" id=1]
+[ext_resource path="res://Bullet.gd" type="Script" id=1]
 
 [sub_resource type="CapsuleShape" id=1]
-radius = 0.2
-height = 0.2
 
 [sub_resource type="SpatialMaterial" id=2]
-flags_transparent = true
-flags_unshaded = true
-albedo_color = Color( 0.988235, 1, 0.819608, 1 )
+albedo_color = Color( 0.505882, 0.482353, 0.482353, 1 )
+metallic = 1.0
 
 [sub_resource type="CapsuleMesh" id=3]
 material = SubResource( 2 )
-radius = 0.2
-mid_height = 0.2
 
-[node name="RigidBody" type="RigidBody"]
+[node name="Bullet" type="RigidBody"]
 script = ExtResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
@@ -25,6 +20,3 @@ shape = SubResource( 1 )
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = SubResource( 3 )
 material/0 = null
-
-[node name="OmniLight" type="OmniLight" parent="."]
-omni_range = 10.0

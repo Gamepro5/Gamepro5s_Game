@@ -15,6 +15,10 @@ var flashlightOn = true;
 var unshaded_material;
 var shaded_material;
 
+signal shoot(bullet, direction, location);
+
+var Bullet = preload("res://LightPill.tscn");
+
 func _ready():
 	unshaded_material = eyes.get_node("Forearm").get_node("Pill").mesh.surface_get_material(0).duplicate()
 	unshaded_material.flags_unshaded = true;
@@ -89,7 +93,12 @@ func _physics_process(delta):
 	if Input.is_action_pressed("jump"):
 		if (!midAir):
 			velocity.y = jumpStrength;
+	if Input.is_action_pressed("action_1"):
+		#get_viewport().warp_mouse(Vector2(get_viewport().size.x/2,get_viewport().size.y/2))
+		print("attempted")
+		emit_signal("shoot", Bullet, rotation, translation)
 	move_and_slide(velocity, upDef) #allways be moving
+	
 	
 	if Input.is_action_just_pressed("toggle_flashlight"):
 		flashlightOn = !flashlightOn
@@ -111,7 +120,7 @@ func _physics_process(delta):
 		cursorFocus = false;
 	
 	#print("tick = ", delta)
-	print(velocity)
+	#print(velocity)
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_FOCUS_IN:
 		#get_viewport().warp_mouse(Vector2(get_viewport().size.x/2,get_viewport().size.y/2))
