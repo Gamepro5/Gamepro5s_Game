@@ -26,6 +26,15 @@ func _ready():
 	shaded_material.flags_unshaded = false;
 	pass
 
+func shoot():
+	var b = Bullet.instance()
+	get_parent().add_child(b)
+	b.translation = translation;
+	b.translation.x -= 2
+	b.rotation = rotation;
+	b.apply_impulse(Vector3(-43,70,0), translation)
+
+
 func _input(event):
 	if event is InputEventMouseMotion:
 		if cursorFocus:
@@ -93,10 +102,11 @@ func _physics_process(delta):
 	if Input.is_action_pressed("jump"):
 		if (!midAir):
 			velocity.y = jumpStrength;
-	if Input.is_action_pressed("action_1"):
+	if Input.is_action_just_pressed("action_1"):
 		#get_viewport().warp_mouse(Vector2(get_viewport().size.x/2,get_viewport().size.y/2))
 		print("attempted")
-		emit_signal("shoot", Bullet, rotation, translation)
+		shoot()
+		#emit_signal("shoot", Bullet, rotation, translation)
 	move_and_slide(velocity, upDef) #allways be moving
 	
 	
