@@ -29,10 +29,11 @@ func _ready():
 func shoot():
 	var b = Bullet.instance()
 	get_parent().add_child(b)
-	b.translation = translation;
-	b.translation.x -= 2
+	#look_at(b.translation, upDef)
+	b.translation = Vector3(translation.x+cos(rotation.y), translation.y, translation.z-sin(rotation.y)) #i am mad and done.
 	b.rotation = rotation;
-	b.apply_impulse(Vector3(-43,70,0), translation)
+	#b.apply_impulse(rotation, Vector3(3,0,0))# THIS ISN'T FUCKING RELATIVE TO MY ROTATION
+
 
 
 func _input(event):
