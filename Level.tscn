@@ -3,6 +3,7 @@
 [ext_resource path="res://PlayerData/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://PlayerData/Code/Player.gd" type="Script" id=2]
 [ext_resource path="res://LightPill.tscn" type="PackedScene" id=3]
+[ext_resource path="res://icon.png" type="Texture" id=4]
 
 [sub_resource type="ProceduralSky" id=1]
 sky_top_color = Color( 0, 0, 0, 1 )
@@ -30,12 +31,10 @@ ambient_light_energy = 0.0
 [sub_resource type="PhysicsMaterial" id=7]
 bounce = 1.0
 
-[sub_resource type="PhysicsMaterial" id=8]
-
 [sub_resource type="BoxShape" id=9]
 
 [sub_resource type="SpatialMaterial" id=10]
-albedo_color = Color( 0.34902, 0.85098, 0.121569, 1 )
+albedo_texture = ExtResource( 4 )
 
 [sub_resource type="CubeMesh" id=11]
 material = SubResource( 10 )
@@ -115,14 +114,13 @@ material/0 = null
 
 [node name="StaticBody" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.9, 0 )
-physics_material_override = SubResource( 8 )
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
-transform = Transform( 500, 0, 0, 0, 1, 0, 0, 0, 500, 0, 0, 0 )
+transform = Transform( 100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0 )
 shape = SubResource( 9 )
 
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
-transform = Transform( 500, 0, 0, 0, 1, 0, 0, 0, 500, 0, 0, 0 )
+transform = Transform( 100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0 )
 mesh = SubResource( 11 )
 material/0 = null
 
@@ -160,7 +158,4 @@ material/0 = null
 [node name="LightPill" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 23.9326, 0.189579, 0 )
 physics_material_override = SubResource( 14 )
-
-[node name="RayCast" type="RayCast" parent="."]
-cast_to = Vector3( 2.014, 4.675, 2.238 )
 [connection signal="shoot" from="Player" to="LightPill" method="_on_Player_shoot"]

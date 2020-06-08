@@ -23,6 +23,7 @@ height = 1.105
 radius = 0.5
 
 [sub_resource type="SpatialMaterial" id=6]
+flags_transparent = true
 albedo_color = Color( 1, 0, 0, 1 )
 
 [sub_resource type="CylinderMesh" id=7]
@@ -60,7 +61,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 current = true
 
 [node name="SpotLight" type="SpotLight" parent="Camera"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.10525, 0, -1.19449 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.10525, 0, -0.992659 )
 light_energy = 2.0
 light_specular = 0.17
 shadow_enabled = true

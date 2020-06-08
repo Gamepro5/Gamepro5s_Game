@@ -30,12 +30,18 @@ func shoot():
 	var b = Bullet.instance()
 	get_parent().add_child(b)
 	#look_at(b.translation, upDef)
-	b.translation = translation - transform.basis.z * 1
+	b.translation = Vector3(translation.x, translation.y+1, translation.z);# - transform.basis.z * 4
 	b.rotation = rotation;
-	#b.apply_impulse(rotation, transform.basis.z * 1)# THIS ISN'T FUCKING RELATIVE TO MY ROTATION
-
-
-
+	#print(eyes.transform.basis.z)
+	#b.apply_central_impulse(Vector3(transform.basis.z.x * -15, eyes.transform.basis.z.y * -20, transform.basis.z.z * -15))
+	#this is a gross method. I want to kno whow TF2 implements the demoman pill. ooh wait maybe 3d hypotneuse.length so i could make sure the total energy is kept normal
+	var velocity = 15;
+	var temp = Vector3(transform.basis.z.x*-15, eyes.transform.basis.z.y * -15, transform.basis.z.z*-15)
+	if (temp.length() > velocity):
+		temp = temp.normalized() * velocity;
+	b.apply_central_impulse(temp)
+	print(temp)
+	# :( my idea didn't work, i ended up trying randoms shit
 func _input(event):
 	if event is InputEventMouseMotion:
 		if cursorFocus:
