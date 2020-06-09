@@ -86,6 +86,11 @@ action_1={
  ]
 }
 
+[layer_names]
+
+3d_render/layer_1="all"
+3d_render/layer_2="light_source"
+
 [rendering]
 
 quality/shadows/filter_mode=2

@@ -14,44 +14,39 @@ var jumpStrength = 10;
 var flashlightOn = true;
 var unshaded_material;
 var shaded_material;
+onready var head = get_node("Head");
 
 signal shoot(bullet, direction, location);
 
 var Bullet = preload("res://LightPill.tscn");
 
 func _ready():
-	unshaded_material = eyes.get_node("Forearm").get_node("Pill").mesh.surface_get_material(0).duplicate()
+	unshaded_material = head.get_node("Forearm").get_node("Pill").mesh.surface_get_material(0).duplicate()
 	unshaded_material.flags_unshaded = true;
-	shaded_material = eyes.get_node("Forearm").get_node("Pill").mesh.surface_get_material(0).duplicate()
+	shaded_material = head.get_node("Forearm").get_node("Pill").mesh.surface_get_material(0).duplicate()
 	shaded_material.flags_unshaded = false;
+	#head.rotate_y(45)
 	pass
 
 func shoot():
 	var b = Bullet.instance()
 	get_parent().add_child(b)
-	#look_at(b.translation, upDef)
-	b.translation = Vector3(translation.x, translation.y+1, translation.z);# - transform.basis.z * 4
-	b.rotation = rotation;
-	#print(eyes.transform.basis.z)
-	#b.apply_central_impulse(Vector3(transform.basis.z.x * -15, eyes.transform.basis.z.y * -20, transform.basis.z.z * -15))
-	#this is a gross method. I want to kno whow TF2 implements the demoman pill. ooh wait maybe 3d hypotneuse.length so i could make sure the total energy is kept normal
-	var velocity = 15;
-	var temp = Vector3(transform.basis.z.x*-15, eyes.transform.basis.z.y * -15, transform.basis.z.z*-15)
-	if (temp.length() > velocity):
-		temp = temp.normalized() * velocity;
-	b.apply_central_impulse(temp)
-	print(temp)
-	# :( my idea didn't work, i ended up trying randoms shit
+	b.translation = Vector3(translation.x, translation.y+1, translation.z);
+	b.rotation = head.global_transform.basis.get_euler();
+	b.set_linear_velocity(head.global_transform.basis.z*-25)
+	
 func _input(event):
 	if event is InputEventMouseMotion:
 		if cursorFocus:
-			#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			rotate(Vector3.UP, deg2rad(-event.relative.x * sensitivity));
-			eyes.rotate(Vector3.RIGHT, deg2rad(-event.relative.y * sensitivity));
-			if eyes.get_rotation().x > PI/2:
-				eyes.set_rotation(Vector3(PI/2, 0, 0))
-			elif eyes.get_rotation().x < -PI/2:
-				eyes.set_rotation(Vector3(-PI/2, 0, 0))
+			head.rotate(Vector3.RIGHT, deg2rad(-event.relative.y * sensitivity));
+			print(head.get_rotation().x)
+			if head.get_rotation().x > PI/2:
+				head.set_rotation(Vector3(PI/2, 0, 0))
+				pass
+			elif head.get_rotation().x < -PI/2:
+				head.set_rotation(Vector3(-PI/2, 0, 0))
+				pass
 	
 	if Input.is_action_pressed("unlock_cursor"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -92,20 +87,20 @@ func _physics_process(delta):
 		
 	if Input.is_action_pressed("move_front"):
 		#velocity.z = velocity.z - 1;
-		velocity.x -= sin(rotation.y) * acceleration;
-		velocity.z -= cos(rotation.y) * acceleration;
+		velocity.x -= sin(head.global_transform.basis.get_euler().y) * acceleration;
+		velocity.z -= cos(head.global_transform.basis.get_euler().y) * acceleration;
 	if Input.is_action_pressed("move_left"):
 		#velocity.x = velocity.x - 1;
-		velocity.x -= cos(rotation.y) * acceleration;
-		velocity.z += sin(rotation.y) * acceleration;
+		velocity.x -= cos(head.global_transform.basis.get_euler().y) * acceleration;
+		velocity.z += sin(head.global_transform.basis.get_euler().y) * acceleration;
 	if Input.is_action_pressed("move_back"):
 		#velocity.x = velocity.x + 1;
-		velocity.x += sin(rotation.y) * acceleration;
-		velocity.z += cos(rotation.y) * acceleration;
+		velocity.x += sin(head.global_transform.basis.get_euler().y) * acceleration;
+		velocity.z += cos(head.global_transform.basis.get_euler().y) * acceleration;
 	if Input.is_action_pressed("move_right"):
 		#velocity.z = velocity.z + 1;
-		velocity.x += cos(rotation.y) * acceleration;
-		velocity.z -= sin(rotation.y) * acceleration;
+		velocity.x += cos(head.global_transform.basis.get_euler().y) * acceleration;
+		velocity.z -= sin(head.global_transform.basis.get_euler().y) * acceleration;
 	if Input.is_action_pressed("jump"):
 		if (!midAir):
 			velocity.y = jumpStrength;
@@ -120,11 +115,11 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("toggle_flashlight"):
 		flashlightOn = !flashlightOn
 		if flashlightOn:
-			eyes.get_node("Forearm").get_node("Pill").mesh.surface_set_material(0, unshaded_material)
-			eyes.get_child(0).light_energy = 2;
+			head.get_node("Forearm").get_node("Pill").mesh.surface_set_material(0, unshaded_material)
+			head.get_node("Forearm").get_node("SpotLight").light_energy = 2;
 		else:
-			eyes.get_node("Forearm").get_node("Pill").mesh.surface_set_material(0, shaded_material)
-			eyes.get_child(0).light_energy = 0;
+			head.get_node("Forearm").get_node("Pill").mesh.surface_set_material(0, shaded_material)
+			head.get_node("Forearm").get_node("SpotLight").light_energy = 0;
 		#eyes.get_node("Forearm").get_node("Pill").mesh.surface_get_material(0).flags_unshaded = !(eyes.get_node("Forearm").get_node("Pill").mesh.surface_get_material(0).flags_unshaded); # this causes a collosal lag spike and I have no idea why.
 		#eyes.get_child(0).light_energy = 0;
 	if Input.is_action_pressed("lock_cursor"):

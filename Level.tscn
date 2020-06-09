@@ -31,19 +31,19 @@ ambient_light_energy = 0.0
 [sub_resource type="PhysicsMaterial" id=7]
 bounce = 1.0
 
-[sub_resource type="BoxShape" id=9]
+[sub_resource type="BoxShape" id=8]
 
-[sub_resource type="SpatialMaterial" id=10]
+[sub_resource type="SpatialMaterial" id=9]
 albedo_texture = ExtResource( 4 )
 
-[sub_resource type="CubeMesh" id=11]
-material = SubResource( 10 )
+[sub_resource type="CubeMesh" id=10]
+material = SubResource( 9 )
 
-[sub_resource type="BoxShape" id=12]
+[sub_resource type="BoxShape" id=11]
 
-[sub_resource type="CubeMesh" id=13]
+[sub_resource type="CubeMesh" id=12]
 
-[sub_resource type="PhysicsMaterial" id=14]
+[sub_resource type="PhysicsMaterial" id=13]
 
 [node name="Level" type="Spatial"]
 
@@ -117,21 +117,21 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.9, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
 transform = Transform( 100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0 )
-shape = SubResource( 9 )
+shape = SubResource( 8 )
 
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
 transform = Transform( 100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0 )
-mesh = SubResource( 11 )
+mesh = SubResource( 10 )
 material/0 = null
 
 [node name="StaticBody2" type="StaticBody" parent="."]
 transform = Transform( 5, 0, 0, 0, 0.707107, -3.53553, 0, 0.707107, 3.53553, 0, 1.73289, -4.14709 )
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody2"]
-shape = SubResource( 9 )
+shape = SubResource( 8 )
 
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody2"]
-mesh = SubResource( 11 )
+mesh = SubResource( 10 )
 material/0 = null
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
@@ -139,7 +139,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.01403, 4.67526, 2.23793 )
 script = ExtResource( 2 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.582703, 0.372208, -0.722439, -0.0190069, 0.894952, 0.445758, 0.812463, -0.246013, 0.528566, -9.8056, 5.638, 6.9593 )
+transform = Transform( 0.582703, 0.372208, -0.722439, -0.0190069, 0.894952, 0.445758, 0.812463, -0.246013, 0.528566, -9.8056, 7.61457, 6.9593 )
 
 [node name="Bird\'s Eye View" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 12.1467, 0 )
@@ -149,13 +149,13 @@ transform = Transform( 0.288762, -0.0396695, 0.956579, 0.41029, -0.897617, -0.16
 gravity_scale = -1.0
 
 [node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
-shape = SubResource( 12 )
+shape = SubResource( 11 )
 
 [node name="MeshInstance" type="MeshInstance" parent="RigidBody"]
-mesh = SubResource( 13 )
+mesh = SubResource( 12 )
 material/0 = null
 
 [node name="LightPill" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 23.9326, 0.189579, 0 )
-physics_material_override = SubResource( 14 )
+physics_material_override = SubResource( 13 )
 [connection signal="shoot" from="Player" to="LightPill" method="_on_Player_shoot"]
