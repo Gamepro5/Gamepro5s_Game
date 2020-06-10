@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://PlayerData/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://PlayerData/Code/Player.gd" type="Script" id=2]
 [ext_resource path="res://LightPill.tscn" type="PackedScene" id=3]
 [ext_resource path="res://icon.png" type="Texture" id=4]
+[ext_resource path="res://LightPost.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ProceduralSky" id=1]
 sky_top_color = Color( 0, 0, 0, 1 )
@@ -158,4 +159,7 @@ material/0 = null
 [node name="LightPill" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 23.9326, 0.189579, 0 )
 physics_material_override = SubResource( 13 )
+
+[node name="LightPost" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.213, 0, 0 )
 [connection signal="shoot" from="Player" to="LightPill" method="_on_Player_shoot"]
