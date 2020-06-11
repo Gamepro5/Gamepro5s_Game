@@ -16,24 +16,11 @@ var unshaded_material;
 var shaded_material;
 onready var head = get_node("Head");
 
-signal shoot(bullet, direction, location);
-
-var Bullet = preload("res://LightPill.tscn");
+signal shoot();
+#how to send a signal to the gun child
 
 func _ready():
-	unshaded_material = head.get_node("Forearm").get_node("Pill").mesh.surface_get_material(0).duplicate()
-	unshaded_material.flags_unshaded = true;
-	shaded_material = head.get_node("Forearm").get_node("Pill").mesh.surface_get_material(0).duplicate()
-	shaded_material.flags_unshaded = false;
-	#head.rotate_y(45)
 	pass
-
-func shoot():
-	var b = Bullet.instance()
-	get_parent().add_child(b)
-	b.translation = Vector3(translation.x, translation.y+1, translation.z);
-	b.rotation = head.global_transform.basis.get_euler();
-	b.set_linear_velocity(head.global_transform.basis.z*-25)
 	
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -106,22 +93,12 @@ func _physics_process(delta):
 			velocity.y = jumpStrength;
 	if Input.is_action_just_pressed("action_1"):
 		#get_viewport().warp_mouse(Vector2(get_viewport().size.x/2,get_viewport().size.y/2))
-		print("attempted")
-		shoot()
-		#emit_signal("shoot", Bullet, rotation, translation)
+		if (head.get_node("Weapon").get_child_count() != 0):
+			emit_signal("shoot", rotation, translation)
+			print("attempted")
 	move_and_slide(velocity, upDef) #allways be moving
 	
-	
-	if Input.is_action_just_pressed("toggle_flashlight"):
-		flashlightOn = !flashlightOn
-		if flashlightOn:
-			head.get_node("Forearm").get_node("Pill").mesh.surface_set_material(0, unshaded_material)
-			head.get_node("Forearm").get_node("SpotLight").light_energy = 2;
-		else:
-			head.get_node("Forearm").get_node("Pill").mesh.surface_set_material(0, shaded_material)
-			head.get_node("Forearm").get_node("SpotLight").light_energy = 0;
-		#eyes.get_node("Forearm").get_node("Pill").mesh.surface_get_material(0).flags_unshaded = !(eyes.get_node("Forearm").get_node("Pill").mesh.surface_get_material(0).flags_unshaded); # this causes a collosal lag spike and I have no idea why.
-		#eyes.get_child(0).light_energy = 0;
+
 	if Input.is_action_pressed("lock_cursor"):
 		#get_viewport().warp_mouse(Vector2(get_viewport().size.x/2,get_viewport().size.y/2))
 		#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -143,4 +120,3 @@ func _notification(what):
 	elif what == MainLoop.NOTIFICATION_WM_FOCUS_OUT:
 		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		print("focus out")
-		

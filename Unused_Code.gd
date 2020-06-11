@@ -1,0 +1,19 @@
+func _ready():
+	unshaded_material = head.get_node("Forearm").get_node("Pill").mesh.surface_get_material(0).duplicate()
+	unshaded_material.flags_unshaded = true;
+	shaded_material = head.get_node("Forearm").get_node("Pill").mesh.surface_get_material(0).duplicate()
+	shaded_material.flags_unshaded = false;
+	#head.rotate_y(45)
+	pass
+
+
+if Input.is_action_just_pressed("toggle_flashlight"):
+		flashlightOn = !flashlightOn
+		if flashlightOn:
+			head.get_node("Forearm").get_node("Pill").mesh.surface_set_material(0, unshaded_material)
+			head.get_node("Forearm").get_node("SpotLight").light_energy = 2;
+		else:
+			head.get_node("Forearm").get_node("Pill").mesh.surface_set_material(0, shaded_material)
+			head.get_node("Forearm").get_node("SpotLight").light_energy = 0;
+		#eyes.get_node("Forearm").get_node("Pill").mesh.surface_get_material(0).flags_unshaded = !(eyes.get_node("Forearm").get_node("Pill").mesh.surface_get_material(0).flags_unshaded); # this causes a collosal lag spike and I have no idea why.
+		#eyes.get_child(0).light_energy = 0;

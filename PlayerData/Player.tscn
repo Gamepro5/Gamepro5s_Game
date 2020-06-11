@@ -1,39 +1,25 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://PlayerData/Models/Materials/Flashlight/Noshading.tres" type="Material" id=1]
+[ext_resource path="res://Gun/Gun.tscn" type="PackedScene" id=1]
 [ext_resource path="res://FinalBaseMesh.obj" type="ArrayMesh" id=2]
 
-[sub_resource type="SpatialMaterial" id=9]
+[sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.12549, 1, 0, 1 )
 metallic = 1.0
 
-[sub_resource type="CapsuleShape" id=5]
+[sub_resource type="CapsuleShape" id=2]
 radius = 0.5
-
-[sub_resource type="SpatialMaterial" id=6]
-albedo_color = Color( 1, 0, 0, 1 )
-
-[sub_resource type="CylinderMesh" id=7]
-material = SubResource( 6 )
-top_radius = 0.05
-bottom_radius = 0.05
-height = 1.0
-
-[sub_resource type="CapsuleMesh" id=8]
-material = ExtResource( 1 )
-radius = 0.06
-mid_height = 0.05
 
 [node name="KinematicBody" type="KinematicBody"]
 
 [node name="FinalBaseMesh" type="MeshInstance" parent="."]
 transform = Transform( -0.1, 0, -3.25841e-08, 0, 0.1, 0, 3.25841e-08, 0, -0.1, 0, 0, 0 )
 mesh = ExtResource( 2 )
-material/0 = SubResource( 9 )
+material/0 = SubResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0.994928, 0 )
-shape = SubResource( 5 )
+shape = SubResource( 2 )
 
 [node name="Head" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92461, 0 )
@@ -41,24 +27,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92461, 0 )
 [node name="Camera" type="Camera" parent="Head"]
 current = true
 
-[node name="Forearm" type="MeshInstance" parent="Head"]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0.480359, -0.901806, -0.343934 )
-cast_shadow = 0
-mesh = SubResource( 7 )
-material/0 = null
-
-[node name="Pill" type="MeshInstance" parent="Head/Forearm"]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0.000249982, 0.506033, -2.38419e-07 )
-cast_shadow = 0
-mesh = SubResource( 8 )
-material/0 = null
-
-[node name="SpotLight" type="SpotLight" parent="Head/Forearm"]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0.506, 0 )
-light_energy = 2.0
-light_specular = 0.17
-shadow_enabled = true
-shadow_reverse_cull_face = true
-spot_range = 4096.0
-
 [node name="Weapon" type="Spatial" parent="Head"]
+
+[node name="Gun" parent="Head/Weapon" instance=ExtResource( 1 )]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.450849, -0.743747, -0.194431 )

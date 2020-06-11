@@ -114,7 +114,6 @@ skin = SubResource( 5 )
 material/0 = null
 
 [node name="StaticBody" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.9, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
 transform = Transform( 100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0 )
@@ -162,4 +161,3 @@ physics_material_override = SubResource( 13 )
 
 [node name="LightPost" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.213, 0, 0 )
-[connection signal="shoot" from="Player" to="LightPill" method="_on_Player_shoot"]

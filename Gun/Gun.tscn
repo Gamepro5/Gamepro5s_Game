@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Gun.gd" type="Script" id=1]
+[ext_resource path="res://Gun/Gun.gd" type="Script" id=1]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -20,5 +20,5 @@ transform = Transform( 0.1, 0, 0, 0, 0.3, 0, 0, 0, 0.1, 0.395682, -0.198822, 0 )
 mesh = SubResource( 1 )
 material/0 = null
 
-[node name="Spatial" type="Spatial" parent="Gun"]
+[node name="BulletExit" type="Spatial" parent="Gun"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.471964, 0, 7.68928e-08 )
