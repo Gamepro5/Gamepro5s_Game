@@ -16,10 +16,12 @@ var unshaded_material;
 var shaded_material;
 onready var head = get_node("Head");
 
-signal shoot();
+signal shoot(weilder);
+
 #how to send a signal to the gun child
 
 func _ready():
+	connect("shoot", head.get_node("Weapon").get_node("Gun"), "on_player_shoot") #gun
 	pass
 	
 func _input(event):
@@ -94,7 +96,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("action_1"):
 		#get_viewport().warp_mouse(Vector2(get_viewport().size.x/2,get_viewport().size.y/2))
 		if (head.get_node("Weapon").get_child_count() != 0):
-			emit_signal("shoot", rotation, translation)
+			emit_signal("shoot", self)
 			print("attempted")
 	move_and_slide(velocity, upDef) #allways be moving
 	
