@@ -1,0 +1,3 @@
+- Utility that grants a target immunity but reduced their max health by 50% of the damage done until they die.
+
+- VOXEL ART STYLE!! IT'S THE PERFECT IDEA: I CAN ONLY RECALL TROVE DOING IT, AND IT IS EASIER THAN NORMAL REALISTIC MODELING. As an indie game I think this is exactly what it needs. Glad I came up with this idea after getting overwhelmed by blender. Perhaps there is a voxel modeling software specifically for voxel art?
