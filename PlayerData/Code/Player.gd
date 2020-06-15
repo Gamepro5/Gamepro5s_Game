@@ -29,7 +29,6 @@ func _input(event):
 		if cursorFocus:
 			rotate(Vector3.UP, deg2rad(-event.relative.x * sensitivity));
 			head.rotate(Vector3.RIGHT, deg2rad(-event.relative.y * sensitivity));
-			print(head.get_rotation().x)
 			if head.get_rotation().x > PI/2:
 				head.set_rotation(Vector3(PI/2, 0, 0))
 				pass
@@ -97,7 +96,7 @@ func _physics_process(delta):
 		#get_viewport().warp_mouse(Vector2(get_viewport().size.x/2,get_viewport().size.y/2))
 		if (head.get_node("Weapon").get_child_count() != 0):
 			emit_signal("shoot", self)
-			print("attempted")
+			#print(head.translation)
 	move_and_slide(velocity, upDef) #allways be moving
 	
 

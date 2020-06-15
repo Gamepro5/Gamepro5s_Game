@@ -12,6 +12,7 @@ radius = 0.5
 
 [node name="FinalBaseMesh" type="MeshInstance" parent="."]
 transform = Transform( -0.35, 0, -1.14044e-07, 0, 0.35, 0, 1.14044e-07, 0, -0.35, 0, 0, -0.519212 )
+layers = 2
 material_override = SubResource( 1 )
 mesh = ExtResource( 2 )
 material/0 = null
@@ -24,6 +25,7 @@ shape = SubResource( 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92461, 0 )
 
 [node name="Camera" type="Camera" parent="Head"]
+cull_mask = 1048573
 current = true
 
 [node name="Weapon" type="Spatial" parent="Head"]
