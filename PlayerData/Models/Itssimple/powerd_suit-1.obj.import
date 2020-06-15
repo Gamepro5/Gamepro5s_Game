@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/powerd_suit-1.obj-94f9300366833bb3708958cc6c4a7096.mesh"
+
+[deps]
+
+files=[ "res://.import/powerd_suit-1.obj-94f9300366833bb3708958cc6c4a7096.mesh" ]
+
+source_file="res://PlayerData/Models/Itssimple/powerd_suit-1.obj"
+dest_files=[ "res://.import/powerd_suit-1.obj-94f9300366833bb3708958cc6c4a7096.mesh", "res://.import/powerd_suit-1.obj-94f9300366833bb3708958cc6c4a7096.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
