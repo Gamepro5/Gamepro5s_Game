@@ -1,21 +1,13 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Gun/Gun.tscn" type="PackedScene" id=1]
-[ext_resource path="res://PlayerData/Models/Itssimple/powerd_suit-1.obj" type="ArrayMesh" id=2]
-
-[sub_resource type="SpatialMaterial" id=1]
+[ext_resource path="res://PlayerData/Models/Foot/foot.tscn" type="PackedScene" id=2]
+[ext_resource path="res://PlayerData/Models/torso/torso.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape" id=2]
 radius = 0.5
 
 [node name="KinematicBody" type="KinematicBody"]
-
-[node name="FinalBaseMesh" type="MeshInstance" parent="."]
-transform = Transform( -0.35, 0, -1.14044e-07, 0, 0.35, 0, 1.14044e-07, 0, -0.35, 0, 0, -0.519212 )
-layers = 2
-material_override = SubResource( 1 )
-mesh = ExtResource( 2 )
-material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0.994928, 0 )
@@ -32,3 +24,12 @@ current = true
 
 [node name="Gun" parent="Head/Weapon" instance=ExtResource( 1 )]
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.450849, -0.743747, -0.194431 )
+
+[node name="torso" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.0276465, 0.506174, 0 )
+
+[node name="foot" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.348689, 0, 0 )
+
+[node name="foot2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.349, 0, 0 )

@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/foot.obj-a21269b2698ad84267e47fbbf4c32589.mesh"
+
+[deps]
+
+files=[ "res://.import/foot.obj-a21269b2698ad84267e47fbbf4c32589.mesh" ]
+
+source_file="res://PlayerData/Models/Foot/foot.obj"
+dest_files=[ "res://.import/foot.obj-a21269b2698ad84267e47fbbf4c32589.mesh", "res://.import/foot.obj-a21269b2698ad84267e47fbbf4c32589.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

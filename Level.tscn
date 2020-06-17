@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://PlayerData/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://PlayerData/Code/Player.gd" type="Script" id=2]
 [ext_resource path="res://LightPill.tscn" type="PackedScene" id=3]
 [ext_resource path="res://icon.png" type="Texture" id=4]
 [ext_resource path="res://LightPost.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Meshes/undefined_mass/untitled.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ProceduralSky" id=1]
 sky_top_color = Color( 0, 0, 0, 1 )
@@ -98,6 +99,7 @@ transform = Transform( 0.73723, -0.392144, 0.550195, 0.314273, 0.919904, 0.23454
 shape = SubResource( 3 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Box4"]
+transform = Transform( 1, -4.04633e-08, 0, -4.76271e-08, 1, -5.91812e-09, 0, -1.55172e-08, 1, 0, 0, 0 )
 mesh = SubResource( 6 )
 skin = SubResource( 5 )
 material/0 = null
@@ -161,3 +163,6 @@ physics_material_override = SubResource( 13 )
 
 [node name="LightPost" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.213, 0, 0 )
+
+[node name="Spatial" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.23977, 0.898888, 1.55332 )
