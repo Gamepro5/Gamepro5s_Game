@@ -1,35 +1,46 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Gun/Gun.tscn" type="PackedScene" id=1]
 [ext_resource path="res://PlayerData/Models/Foot/foot.tscn" type="PackedScene" id=2]
 [ext_resource path="res://PlayerData/Models/torso/torso.tscn" type="PackedScene" id=3]
+[ext_resource path="res://PlayerData/Models/Head/Head.tscn" type="PackedScene" id=4]
+[ext_resource path="res://PlayerData/Models/Hand/Hand.tscn" type="PackedScene" id=5]
 
-[sub_resource type="CapsuleShape" id=2]
+[sub_resource type="CapsuleShape" id=1]
 radius = 0.5
 
 [node name="KinematicBody" type="KinematicBody"]
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0.994928, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Head" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92461, 0 )
 
-[node name="Camera" type="Camera" parent="Head"]
+[node name="Eyes" type="Camera" parent="Head"]
 cull_mask = 1048573
 current = true
 
 [node name="Weapon" type="Spatial" parent="Head"]
 
 [node name="Gun" parent="Head/Weapon" instance=ExtResource( 1 )]
-transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.450849, -0.743747, -0.194431 )
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.685677, -0.3807, -0.194431 )
+
+[node name="Head" parent="Head" instance=ExtResource( 4 )]
+transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, -0.12338, 0 )
+
+[node name="RightHand" parent="Head" instance=ExtResource( 5 )]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.685677, -0.676821, -0.215605 )
+
+[node name="LeftHand" parent="Head" instance=ExtResource( 5 )]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.686, -0.677, -0.216 )
 
 [node name="torso" parent="." instance=ExtResource( 3 )]
-transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.0276465, 0.506174, 0 )
+transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -0.0276465, 0.628911, 0 )
 
-[node name="foot" parent="." instance=ExtResource( 2 )]
-transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.348689, 0, 0 )
+[node name="RightFoot" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.349, 0, 0 )
 
-[node name="foot2" parent="." instance=ExtResource( 2 )]
-transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.349, 0, 0 )
+[node name="LeftFoot" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -0.348689, 0, 0 )

@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/explosive_pill.obj-c0b72d52366a6451cb3b78802452013b.mesh"
+
+[deps]
+
+files=[ "res://.import/explosive_pill.obj-c0b72d52366a6451cb3b78802452013b.mesh" ]
+
+source_file="res://Gun/Bullet/explosive_pill.obj"
+dest_files=[ "res://.import/explosive_pill.obj-c0b72d52366a6451cb3b78802452013b.mesh", "res://.import/explosive_pill.obj-c0b72d52366a6451cb3b78802452013b.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

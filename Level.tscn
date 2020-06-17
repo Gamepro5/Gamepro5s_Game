@@ -1,9 +1,8 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://PlayerData/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://PlayerData/Code/Player.gd" type="Script" id=2]
 [ext_resource path="res://LightPill.tscn" type="PackedScene" id=3]
-[ext_resource path="res://icon.png" type="Texture" id=4]
 [ext_resource path="res://LightPost.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Meshes/undefined_mass/untitled.tscn" type="PackedScene" id=6]
 
@@ -35,15 +34,21 @@ bounce = 1.0
 
 [sub_resource type="BoxShape" id=8]
 
-[sub_resource type="SpatialMaterial" id=9]
-albedo_texture = ExtResource( 4 )
+[sub_resource type="SpatialMaterial" id=15]
+albedo_color = Color( 0.196078, 1, 0, 1 )
 
 [sub_resource type="CubeMesh" id=10]
-material = SubResource( 9 )
+material = SubResource( 15 )
+
+[sub_resource type="SpatialMaterial" id=14]
+metallic = 1.0
 
 [sub_resource type="BoxShape" id=11]
 
 [sub_resource type="CubeMesh" id=12]
+
+[sub_resource type="SpatialMaterial" id=16]
+albedo_color = Color( 1, 0, 0, 1 )
 
 [sub_resource type="PhysicsMaterial" id=13]
 
@@ -133,8 +138,9 @@ transform = Transform( 5, 0, 0, 0, 0.707107, -3.53553, 0, 0.707107, 3.53553, 0, 
 shape = SubResource( 8 )
 
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 mesh = SubResource( 10 )
-material/0 = null
+material/0 = SubResource( 14 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.01403, 4.67526, 2.23793 )
@@ -155,7 +161,7 @@ shape = SubResource( 11 )
 
 [node name="MeshInstance" type="MeshInstance" parent="RigidBody"]
 mesh = SubResource( 12 )
-material/0 = null
+material/0 = SubResource( 16 )
 
 [node name="LightPill" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 23.9326, 0.189579, 0 )
@@ -164,5 +170,5 @@ physics_material_override = SubResource( 13 )
 [node name="LightPost" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.213, 0, 0 )
 
-[node name="Spatial" parent="." instance=ExtResource( 6 )]
+[node name="Unidentified Mass" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.23977, 0.898888, 1.55332 )

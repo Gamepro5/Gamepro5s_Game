@@ -1,8 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Gun/Gun.gd" type="Script" id=1]
+[ext_resource path="res://Gun/weapon.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://Gun/weapon.png" type="Texture" id=3]
 
-[sub_resource type="CubeMesh" id=1]
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 3 )
 
 [node name="Gun" type="Spatial"]
 script = ExtResource( 1 )
@@ -10,15 +13,10 @@ script = ExtResource( 1 )
 [node name="Gun" type="Spatial" parent="."]
 transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 0, 0, 0 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Gun"]
-transform = Transform( 0.5, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
-mesh = SubResource( 1 )
-material/0 = null
-
-[node name="MeshInstance2" type="MeshInstance" parent="Gun"]
-transform = Transform( 0.1, 0, 0, 0, 0.3, 0, 0, 0, 0.1, 0.395682, -0.198822, 0 )
-mesh = SubResource( 1 )
-material/0 = null
-
 [node name="BulletExit" type="Spatial" parent="Gun"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.471964, 0, 7.68928e-08 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1, 0.1, 0 )
+
+[node name="Model" type="MeshInstance" parent="Gun"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, -0.9, 0.35 )
+mesh = ExtResource( 2 )
+material/0 = SubResource( 1 )
