@@ -16,10 +16,7 @@ var unshaded_material;
 var shaded_material;
 
 func _ready():
-	unshaded_material = eyes.get_node("Forearm").get_node("Pill").mesh.surface_get_material(0).duplicate()
-	unshaded_material.flags_unshaded = true;
-	shaded_material = eyes.get_node("Forearm").get_node("Pill").mesh.surface_get_material(0).duplicate()
-	shaded_material.flags_unshaded = false;
+	eyes.set
 	pass
 
 func _physics_process(delta):

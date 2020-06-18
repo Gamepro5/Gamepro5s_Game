@@ -19,7 +19,6 @@ shape = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92461, 0 )
 
 [node name="Eyes" type="Camera" parent="Head"]
-cull_mask = 1048573
 current = true
 
 [node name="Weapon" type="Spatial" parent="Head"]

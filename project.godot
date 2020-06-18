@@ -88,8 +88,9 @@ action_1={
 
 [layer_names]
 
-3d_render/layer_1="all"
-3d_render/layer_2="light_source"
+3d_render/layer_1="default"
+3d_render/layer_2="player"
+3d_render/layer_3="viewmodel"
 
 [rendering]
 

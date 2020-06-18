@@ -7,7 +7,6 @@ var maxSpeed = 5;
 var acceleration = 0;
 var midAir = false;
 var cursorFocus = false;
-onready var eyes = get_node("Camera");
 var sensitivity = 0.3;
 var gravity = 25;
 var jumpStrength = 10;
@@ -15,12 +14,24 @@ var flashlightOn = true;
 var unshaded_material;
 var shaded_material;
 onready var head = get_node("Head");
+onready var eyes = head.get_node("Eyes");
 
 signal shoot(weilder);
 
 #how to send a signal to the gun child
 
 func _ready():
+	eyes.set_cull_mask_bit(1, false);
+	
+	get_node("torso").get_node("torso").set_layer_mask_bit(0, false)
+	get_node("torso").get_node("torso").set_layer_mask_bit(1, true)
+	
+	#get_node("Head/RightHand").get_node("RightHand").set_layer_mask_bit(0, false)
+	#get_node("Head/RightHand").get_node("RightHand").set_layer_mask_bit(1, true)
+	get_node("RightHand")
+	
+	
+
 	connect("shoot", head.get_node("Weapon").get_node("Gun"), "on_player_shoot") #gun
 	pass
 	
