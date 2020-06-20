@@ -1,10 +1,9 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://PlayerData/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://PlayerData/Code/Player.gd" type="Script" id=2]
-[ext_resource path="res://LightPill.tscn" type="PackedScene" id=3]
-[ext_resource path="res://LightPost.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Meshes/undefined_mass/untitled.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Game.gd" type="Script" id=2]
+[ext_resource path="res://LightPost.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Meshes/undefined_mass/untitled.tscn" type="PackedScene" id=5]
+[ext_resource path="res://LightPill.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ProceduralSky" id=1]
 sky_top_color = Color( 0, 0, 0, 1 )
@@ -52,122 +51,125 @@ albedo_color = Color( 1, 0, 0, 1 )
 
 [sub_resource type="PhysicsMaterial" id=15]
 
-[node name="Level" type="Spatial"]
+[node name="Game" type="Spatial"]
+script = ExtResource( 2 )
 
-[node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 0.707107, 0.241845, -0.664463, 0, 0.939693, 0.34202, 0.707107, -0.241845, 0.664463, -29.3297, 15.5992, 19.4512 )
+[node name="Map" type="Node" parent="."]
+
+[node name="First Map" type="Spatial" parent="Map"]
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Map/First Map"]
+transform = Transform( 0.707107, 0.241845, -0.664463, 0, 0.939692, 0.34202, 0.707107, -0.241845, 0.664463, -29.3297, 15.5992, 19.4512 )
 light_energy = 0.05
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Map/First Map"]
 environment = SubResource( 2 )
 
-[node name="Box" type="RigidBody" parent="."]
+[node name="Box" type="RigidBody" parent="Map/First Map"]
 transform = Transform( 0.73723, -0.392144, 0.550195, 0.314273, 0.919904, 0.234542, -0.598101, 0, 0.801421, 4, 7.12943, 1.08789 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Box"]
+[node name="CollisionShape" type="CollisionShape" parent="Map/First Map/Box"]
 transform = Transform( 1, -3.68392e-08, 0, -4.76271e-08, 1, -5.91812e-09, 0, -2.03733e-08, 1, 0, 0, 0 )
 shape = SubResource( 3 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Box"]
-transform = Transform( 1, -3.68392e-08, 0, -4.76271e-08, 1, -5.91812e-09, 0, -2.03733e-08, 1, 0, 0, 0 )
+[node name="MeshInstance" type="MeshInstance" parent="Map/First Map/Box"]
+transform = Transform( 1, -3.32151e-08, 0, -4.76271e-08, 1, -5.91812e-09, 0, -2.52294e-08, 1, 0, 0, 0 )
 mesh = SubResource( 4 )
 skin = SubResource( 5 )
 material/0 = null
 
-[node name="Box2" type="RigidBody" parent="."]
+[node name="Box2" type="RigidBody" parent="Map/First Map"]
 transform = Transform( 0.73723, -0.392144, 0.550195, 0.314273, 0.919904, 0.234542, -0.598101, 0, 0.801421, -0.9, 7.12943, -2.16618 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Box2"]
+[node name="CollisionShape" type="CollisionShape" parent="Map/First Map/Box2"]
 shape = SubResource( 3 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Box2"]
+[node name="MeshInstance" type="MeshInstance" parent="Map/First Map/Box2"]
 mesh = SubResource( 6 )
 skin = SubResource( 5 )
 material/0 = null
 
-[node name="Box3" type="RigidBody" parent="."]
+[node name="Box3" type="RigidBody" parent="Map/First Map"]
 transform = Transform( 0.73723, -0.392144, 0.550195, 0.314273, 0.919904, 0.234542, -0.598101, 0, 0.801421, 0.755633, 4.50575, -0.439316 )
 physics_material_override = SubResource( 7 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Box3"]
+[node name="CollisionShape" type="CollisionShape" parent="Map/First Map/Box3"]
 shape = SubResource( 3 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Box3"]
+[node name="MeshInstance" type="MeshInstance" parent="Map/First Map/Box3"]
 mesh = SubResource( 6 )
 skin = SubResource( 5 )
 material/0 = null
 
-[node name="Box4" type="RigidBody" parent="."]
+[node name="Box4" type="RigidBody" parent="Map/First Map"]
 transform = Transform( 0.73723, -0.392144, 0.550195, 0.314273, 0.919904, 0.234542, -0.598101, 0, 0.801421, 1.00442, 7.12943, -0.439316 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Box4"]
+[node name="CollisionShape" type="CollisionShape" parent="Map/First Map/Box4"]
 shape = SubResource( 3 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Box4"]
+[node name="MeshInstance" type="MeshInstance" parent="Map/First Map/Box4"]
 transform = Transform( 1, -3.3215e-08, 0, -4.76271e-08, 1, -5.91812e-09, 0, -2.52295e-08, 1, 0, 0, 0 )
 mesh = SubResource( 6 )
 skin = SubResource( 5 )
 material/0 = null
 
-[node name="Box5" type="RigidBody" parent="."]
+[node name="Box5" type="RigidBody" parent="Map/First Map"]
 transform = Transform( 0.73723, -0.392144, 0.550195, 0.314273, 0.919904, 0.234542, -0.598101, 0, 0.801421, 6, 10.1629, -0.439316 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Box5"]
+[node name="CollisionShape" type="CollisionShape" parent="Map/First Map/Box5"]
 shape = SubResource( 3 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Box5"]
+[node name="MeshInstance" type="MeshInstance" parent="Map/First Map/Box5"]
 mesh = SubResource( 6 )
 skin = SubResource( 5 )
 material/0 = null
 
-[node name="StaticBody" type="StaticBody" parent="."]
+[node name="StaticBody" type="StaticBody" parent="Map/First Map"]
 
-[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+[node name="CollisionShape" type="CollisionShape" parent="Map/First Map/StaticBody"]
 transform = Transform( 100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0 )
 shape = SubResource( 8 )
 
-[node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
+[node name="MeshInstance" type="MeshInstance" parent="Map/First Map/StaticBody"]
 transform = Transform( 100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0 )
 mesh = SubResource( 10 )
 material/0 = null
 
-[node name="StaticBody2" type="StaticBody" parent="."]
+[node name="StaticBody2" type="StaticBody" parent="Map/First Map"]
 transform = Transform( 5, 0, 0, 0, 0.707107, -3.53553, 0, 0.707107, 3.53553, 0, 1.73289, -4.14709 )
 
-[node name="CollisionShape" type="CollisionShape" parent="StaticBody2"]
+[node name="CollisionShape" type="CollisionShape" parent="Map/First Map/StaticBody2"]
 shape = SubResource( 8 )
 
-[node name="MeshInstance" type="MeshInstance" parent="StaticBody2"]
+[node name="MeshInstance" type="MeshInstance" parent="Map/First Map/StaticBody2"]
 mesh = SubResource( 10 )
 material/0 = SubResource( 11 )
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 0.356738, 0, 0.934205, 0, 1, 0, -0.934205, 0, 0.356738, -1.74311, 1.34986, 1.65064 )
-script = ExtResource( 2 )
-
-[node name="Camera" type="Camera" parent="."]
+[node name="Camera" type="Camera" parent="Map/First Map"]
 transform = Transform( 0.582703, 0.372208, -0.722439, -0.0190069, 0.894952, 0.445758, 0.812463, -0.246013, 0.528566, -9.8056, 7.61457, 6.9593 )
 
-[node name="Bird\'s Eye View" type="Camera" parent="."]
+[node name="Bird\'s Eye View" type="Camera" parent="Map/First Map"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 12.1467, 0 )
 
-[node name="RigidBody" type="RigidBody" parent="."]
+[node name="RigidBody" type="RigidBody" parent="Map/First Map"]
 transform = Transform( 0.288762, -0.0396695, 0.956579, 0.41029, -0.897617, -0.161079, 0.865031, 0.438988, -0.242922, 0.492693, 2.36799, -1.31697 )
 gravity_scale = -1.0
 
-[node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
+[node name="CollisionShape" type="CollisionShape" parent="Map/First Map/RigidBody"]
 shape = SubResource( 12 )
 
-[node name="MeshInstance" type="MeshInstance" parent="RigidBody"]
+[node name="MeshInstance" type="MeshInstance" parent="Map/First Map/RigidBody"]
 mesh = SubResource( 13 )
 material/0 = SubResource( 14 )
 
-[node name="LightPill" parent="." instance=ExtResource( 3 )]
+[node name="LightPill" parent="Map/First Map" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 23.9326, 0.189579, 0 )
 physics_material_override = SubResource( 15 )
 
-[node name="LightPost" parent="." instance=ExtResource( 5 )]
+[node name="LightPost" parent="Map/First Map" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.213, 0, 0 )
 
-[node name="Unidentified Mass" parent="." instance=ExtResource( 6 )]
+[node name="Unidentified Mass" parent="Map/First Map" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.23977, 0.898888, 1.55332 )
+
+[node name="Players" type="Node" parent="."]

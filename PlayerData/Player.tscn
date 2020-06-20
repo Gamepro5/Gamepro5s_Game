@@ -6,14 +6,14 @@
 [ext_resource path="res://PlayerData/Models/Head/Head.tscn" type="PackedScene" id=4]
 [ext_resource path="res://PlayerData/Models/Hand/Hand.tscn" type="PackedScene" id=5]
 
-[sub_resource type="CapsuleShape" id=1]
+[sub_resource type="CapsuleShape" id=16]
 radius = 0.5
 
 [node name="KinematicBody" type="KinematicBody"]
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0.994928, 0 )
-shape = SubResource( 1 )
+shape = SubResource( 16 )
 
 [node name="Head" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92461, 0 )

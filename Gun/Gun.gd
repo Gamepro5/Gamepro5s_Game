@@ -6,7 +6,7 @@ func on_player_shoot(weilder):
 	var b = Bullet.instance()
 	b.add_collision_exception_with(weilder)
 	#weilder.camera.add_render_exeption();
-	get_tree().get_root().get_node("Level").add_child(b)
+	get_tree().get_root().get_node("Game/Map/First Map").add_child(b)
 	print(weilder.global_transform.origin)
 	print(weilder.get_node("Head").global_transform.origin)
 	#print( to_global(weilder.get_node("Head").translation))

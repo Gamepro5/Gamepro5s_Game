@@ -17,7 +17,7 @@ _global_script_class_icons={
 
 config/name="Gamepro5's Game"
 config/description="Gamepro5's Game a project started by Gamepro5. It does not have an actual name yet and also isn't technically a game, but development is progressing and it will eventually become a full game. There is no set release date."
-run/main_scene="res://Level.tscn"
+run/main_scene="res://Game.tscn"
 boot_splash/image="res://Loading Screen.png"
 boot_splash/bg_color=Color( 0.6, 0.6, 0.6, 1 )
 config/icon="res://icon.png"

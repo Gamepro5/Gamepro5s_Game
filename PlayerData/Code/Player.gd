@@ -22,7 +22,6 @@ signal shoot(weilder);
 
 func _ready():
 	eyes.set_cull_mask_bit(1, false);
-	
 	get_node("torso").get_node("torso").set_layer_mask_bit(0, false)
 	get_node("torso").get_node("torso").set_layer_mask_bit(1, true)
 	
