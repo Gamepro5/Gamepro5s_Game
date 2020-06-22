@@ -13,7 +13,7 @@ var jumpStrength = 10;
 var flashlightOn = true;
 var unshaded_material;
 var shaded_material;
-var is_human;
+var type = "player";
 onready var head = get_node("Head");
 onready var eyes = head.get_node("Eyes");
 
@@ -74,17 +74,6 @@ func _physics_process(delta):
 		velocity.x = velocityVector.x;
 		velocity.z = velocityVector.z;
 	movement_process(delta)
-	if (is_human):
-		if Input.is_action_pressed("lock_cursor"):
-			#get_viewport().warp_mouse(Vector2(get_viewport().size.x/2,get_viewport().size.y/2))
-			#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			cursorFocus = true;
-		if Input.is_action_pressed("unlock_cursor"):
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-			cursorFocus = false;
-		if (cursorFocus):
-			input_process(delta)
 	move_and_slide(velocity, upDef) #allways be moving
 	
 func movement_process(_delta):
@@ -113,28 +102,3 @@ func movement_process(_delta):
 			emit_signal("shoot", self)
 			#print(head.translation)
 			
-func input_process(_delta):
-	if Input.is_action_pressed("move_front"):
-		event.move_front = true;
-	else:
-		event.move_front = false;
-	if Input.is_action_pressed("move_left"):
-		event.move_left = true;
-	else:
-		event.move_left = false;
-	if Input.is_action_pressed("move_back"):
-		event.move_back = true;
-	else:
-		event.move_back = false;
-	if Input.is_action_pressed("move_right"):
-		event.move_right = true;
-	else:
-		event.move_right = false;
-	if Input.is_action_pressed("jump"):
-		event.jump = true;
-	else:
-		event.jump = false;
-	if Input.is_action_just_pressed("action_1"):
-		event.action_1 = true;
-	else:
-		event.action_1 = false;

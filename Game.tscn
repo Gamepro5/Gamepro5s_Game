@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=2]
 [ext_resource path="res://LightPost.tscn" type="PackedScene" id=4]
@@ -50,6 +50,8 @@ metallic = 1.0
 albedo_color = Color( 1, 0, 0, 1 )
 
 [sub_resource type="PhysicsMaterial" id=15]
+
+[sub_resource type="BoxShape" id=16]
 
 [node name="Game" type="Spatial"]
 script = ExtResource( 2 )
@@ -169,7 +171,28 @@ physics_material_override = SubResource( 15 )
 [node name="LightPost" parent="Map/First Map" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.213, 0, 0 )
 
-[node name="Unidentified Mass" parent="Map/First Map" instance=ExtResource( 5 )]
+[node name="Unidentified Mass" type="Spatial" parent="Map/First Map"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.23977, 0.898888, 1.55332 )
+
+[node name="Model" parent="Map/First Map/Unidentified Mass" instance=ExtResource( 5 )]
+
+[node name="StaticBody" type="StaticBody" parent="Map/First Map/Unidentified Mass"]
+transform = Transform( 0.761624, 0, 0, 0, 1.20432, 0, 0, 0, 0.368267, -0.239391, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Map/First Map/Unidentified Mass/StaticBody"]
+transform = Transform( 0.9, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 16 )
+
+[node name="Unidentified Mass 2" type="Spatial" parent="Map/First Map"]
+transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -10.8208, 0.898888, 5.98918 )
+
+[node name="Model" parent="Map/First Map/Unidentified Mass 2" instance=ExtResource( 5 )]
+
+[node name="StaticBody" type="StaticBody" parent="Map/First Map/Unidentified Mass 2"]
+transform = Transform( 0.761624, 0, 0, 0, 1.20432, 0, 0, 0, 0.368267, -0.239391, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Map/First Map/Unidentified Mass 2/StaticBody"]
+transform = Transform( 0.9, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 16 )
 
 [node name="Players" type="Node" parent="."]
