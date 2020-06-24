@@ -13,7 +13,19 @@ func instance_ready(): #custom function since using _ready would trigger before 
 func _physics_process(delta):
 	var bodies = get_colliding_bodies();
 	if (bodies.size() != 0):
-		#print(bodies[0].get_filename())
-		if (bodies[0].get_filename() == "res://PlayerData/player.tscn"):
-			print("Hit detected @ ", bodies[0].name, " @ time ", get_time());
+		var target = bodies[0];
+		#get_node("explosive_pill").visible = false;
+		if (target.get_filename() == "res://PlayerData/player.tscn"):
+			
+			#sleeping = true;
+			#get_node("explosive_pill").visible = false;
+			#self.get_node("CollisionShape").disabled = true;
+			
+			print("Hit detected @ ", target.name, " @ time = ", OS.get_time());
+			target.health -= 20;
+			queue_free()
+			print(target.health)
+			if (target.health <= 0):
+				target.kill();
+			
 

@@ -14,12 +14,15 @@ var flashlightOn = true;
 var unshaded_material;
 var shaded_material;
 var type = "player";
+var health = 100;
 onready var head = get_node("Head");
 onready var eyes = head.get_node("Eyes");
 
 signal shoot(weilder);
 
 #how to send a signal to the gun child
+func kill():
+	queue_free();
 
 func _ready():
 
@@ -54,14 +57,12 @@ func _physics_process(delta):
 		if abs(velocity.z) <= 0.0001:
 			velocity.z = 0;
 			
-	
+	velocity.y = velocity.y - (gravity * delta);
 	if midAir:
-		velocity.y = velocity.y - (gravity * delta);
-		
-		#set_translation(Vector3(get_translation().x, 0, get_translation().z))
+		#velocity.y = velocity.y - (gravity * delta);
 		acceleration = accelerationConstant / 5;
 	else:
-		velocity.y = 0;
+		velocity.y = -1;
 		acceleration = accelerationConstant;
 	
 	var velocityVector = Vector3(velocity.x, 0, velocity.z);
@@ -91,7 +92,7 @@ func _physics_process(delta):
 			#velocity.z = velocity.z + 1;
 			velocity.x += cos(rotation.y) * acceleration;
 			velocity.z -= sin(rotation.y) * acceleration;
-		if Input.is_action_pressed("jump"):
+		if Input.is_action_just_pressed("jump"):
 			if (!midAir):
 				velocity.y = jumpStrength;
 		if Input.is_action_just_pressed("action_1"):
@@ -112,7 +113,7 @@ func _physics_process(delta):
 		cursorFocus = false;
 	
 	#print("tick = ", delta)
-	#print(velocity)
+	print(is_on_floor())
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_FOCUS_IN:
 		#get_viewport().warp_mouse(Vector2(get_viewport().size.x/2,get_viewport().size.y/2))

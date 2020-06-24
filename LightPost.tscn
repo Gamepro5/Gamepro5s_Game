@@ -4,17 +4,17 @@
 
 [sub_resource type="CylinderMesh" id=2]
 
-[sub_resource type="CapsuleShape" id=4]
+[sub_resource type="CapsuleShape" id=3]
 radius = 0.2
 height = 0.2
 
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="SpatialMaterial" id=4]
 flags_transparent = true
 flags_unshaded = true
 albedo_color = Color( 0.988235, 1, 0.819608, 1 )
 
-[sub_resource type="CapsuleMesh" id=3]
-material = SubResource( 5 )
+[sub_resource type="CapsuleMesh" id=5]
+material = SubResource( 4 )
 radius = 0.2
 mid_height = 0.2
 
@@ -33,10 +33,10 @@ material/0 = null
 transform = Transform( 2, 0, 0, 0, -3.25841e-07, -2, 0, 2, -3.25841e-07, 0, 5.83, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Bulb"]
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Bulb"]
-mesh = SubResource( 3 )
+mesh = SubResource( 5 )
 material/0 = null
 
 [node name="OmniLight" type="OmniLight" parent="Bulb"]

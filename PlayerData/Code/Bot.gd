@@ -14,6 +14,7 @@ var flashlightOn = true;
 var unshaded_material;
 var shaded_material;
 var type = "player";
+var health = 100;
 onready var head = get_node("Head");
 onready var eyes = head.get_node("Eyes");
 
@@ -34,6 +35,8 @@ var event = {
 signal shoot(weilder);
 
 #how to send a signal to the gun child
+func kill():
+	queue_free()
 	
 func _ready():
 	connect("shoot", head.get_node("Weapon").get_node("Gun"), "on_player_shoot") #gun
@@ -54,13 +57,12 @@ func _physics_process(delta):
 			velocity.z = 0;
 			
 	
+	velocity.y = velocity.y - (gravity * delta);
 	if midAir:
-		velocity.y = velocity.y - (gravity * delta);
-		
-		#set_translation(Vector3(get_translation().x, 0, get_translation().z))
+		#velocity.y = velocity.y - (gravity * delta);
 		acceleration = accelerationConstant / 5;
 	else:
-		velocity.y = 0;
+		velocity.y = -1;
 		acceleration = accelerationConstant;
 	
 	var velocityVector = Vector3(velocity.x, 0, velocity.z);

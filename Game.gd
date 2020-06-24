@@ -4,7 +4,7 @@ extends Spatial
 var player_scn = preload("res://PlayerData/player.tscn")
 var player_gd = preload("res://PlayerData/Code/Player.gd")
 
-var player2_gd = preload("res://PlayerData/Player2.gd")
+var bot_gd = preload("res://PlayerData/Code/Bot.gd")
 
 func set_player_pov(player, state): #must take in type player and a boolean
 	player.get_node("Head/Eyes").current = state;
@@ -22,7 +22,7 @@ func _ready():
 	var bot = player_scn.instance()
 	bot.set_translation(Vector3(-3, 50, -5))
 	bot.set_rotation_degrees(Vector3(0, 180, 0))
-	bot.set_script(player2_gd)
+	bot.set_script(bot_gd)
 	bot.set_name("Bot")
 	$Players.add_child(bot)
 
