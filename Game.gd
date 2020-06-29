@@ -1,7 +1,7 @@
 extends Spatial
 
 #preloading
-var player_scn = preload("res://PlayerData/player.tscn")
+var player_scn = preload("res://PlayerData/Player.tscn")
 var player_gd = preload("res://PlayerData/Code/Player.gd")
 
 var bot_gd = preload("res://PlayerData/Code/Bot.gd")

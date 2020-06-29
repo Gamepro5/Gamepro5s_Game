@@ -113,7 +113,6 @@ func _physics_process(delta):
 		cursorFocus = false;
 	
 	#print("tick = ", delta)
-	print(is_on_floor())
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_FOCUS_IN:
 		#get_viewport().warp_mouse(Vector2(get_viewport().size.x/2,get_viewport().size.y/2))
