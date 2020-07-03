@@ -146,6 +146,48 @@ shape = SubResource( 8 )
 mesh = SubResource( 10 )
 material/0 = SubResource( 11 )
 
+[node name="StaticBody3" type="StaticBody" parent="Map/First Map"]
+transform = Transform( -2.28673, 0.887123, 0.310167, 0, 0.0697563, -4.98782, -4.44644, -0.456232, -0.159514, -14.2035, 1.73289, 14.7926 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Map/First Map/StaticBody3"]
+shape = SubResource( 8 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Map/First Map/StaticBody3"]
+transform = Transform( 1, 0, 0, -1.19209e-07, 1, 5.96046e-08, 0, 2.79397e-09, 1, 0, 0, 0 )
+mesh = SubResource( 10 )
+material/0 = SubResource( 11 )
+
+[node name="StaticBody6" type="StaticBody" parent="Map/First Map"]
+transform = Transform( -4.23871, -0.406316, -1.7047, 0, 0.642788, -3.83022, 2.65203, -0.649409, -2.72459, -4.06334, 1.73289, 14.7926 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Map/First Map/StaticBody6"]
+shape = SubResource( 8 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Map/First Map/StaticBody6"]
+transform = Transform( 1, 0, 0, -1.19209e-07, 1, 5.96046e-08, 0, 2.79397e-09, 1, 0, 0, 0 )
+mesh = SubResource( 10 )
+material/0 = SubResource( 11 )
+
+[node name="StaticBody4" type="StaticBody" parent="Map/First Map"]
+transform = Transform( -1.42961, 0.958253, -7.80595e-07, 0, -1.62921e-07, -4.99999, -4.79126, -0.285922, 2.32913e-07, -19.8922, 1.73289, -6.16255 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Map/First Map/StaticBody4"]
+shape = SubResource( 8 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Map/First Map/StaticBody4"]
+mesh = SubResource( 10 )
+material/0 = SubResource( 11 )
+
+[node name="StaticBody5" type="StaticBody" parent="Map/First Map"]
+transform = Transform( -4.98254, -0.0834864, 6.80081e-08, 0, -1.62921e-07, -4.99999, 0.417432, -0.996509, 8.11758e-07, -15.6666, 1.73289, -6.16255 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Map/First Map/StaticBody5"]
+shape = SubResource( 8 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Map/First Map/StaticBody5"]
+mesh = SubResource( 10 )
+material/0 = SubResource( 11 )
+
 [node name="Camera" type="Camera" parent="Map/First Map"]
 transform = Transform( 0.582703, 0.372208, -0.722439, -0.0190069, 0.894952, 0.445758, 0.812463, -0.246013, 0.528566, -9.8056, 7.61457, 6.9593 )
 
@@ -195,3 +237,18 @@ transform = Transform( 0.9, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 shape = SubResource( 16 )
 
 [node name="Players" type="Node" parent="."]
+
+[node name="UI" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI"]
+margin_right = 251.0
+margin_bottom = 146.0
+text = "Hello!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
